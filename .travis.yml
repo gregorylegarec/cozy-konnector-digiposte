@@ -26,3 +26,4 @@ script:
 - yarn build
 after_success:
 - test $TRAVIS_BRANCH = "master" && yarn run deploy:travis -- --branch=build
+- test $TRAVIS_BRANCH = "debug" && yarn run deploy:travis -- --branch=debug_build
