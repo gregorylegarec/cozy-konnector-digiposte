@@ -56,6 +56,10 @@ function fetchBills (requiredFields) {
       return this.terminate(errors.USER_ACTION_NEEDED)
     }
 
+    const cookies = j.getCookies('https://secure.digiposte.fr/login_check')
+    log('debug', 'cookies')
+    log('debug', cookies)
+
     // read the XSRF-TOKEN in the cookie jar and add it in the header
     log('info', 'Getting the XSRF token')
     const xsrfcookie = j.getCookies('https://secure.digiposte.fr/login_check')
@@ -98,7 +102,7 @@ function fetchBills (requiredFields) {
     })
     return rq('https://secure.digiposte.fr/api/v3/folders/safe')
   })
-  .then(body => fetchFolder(body, requiredFields.folderPath, fulltimeout))
+  // .then(body => fetchFolder(body, requiredFields.folderPath, fulltimeout))
 }
 
 // create a folder if it does not already exist
